@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('DSpace Directory') {
         steps {
-          sh 'mkdir ${WORKSPACE}/dspace
+          sh 'mkdir ${WORKSPACE}/dspace'
         }
     }
   }
