@@ -1,9 +1,5 @@
 pipeline {
-  agent any
-  stages {
-    
-    stage('Build') {
-      agent {
+  agent {
         kubernetes {
              yaml '''
                apiVersion: v1
@@ -19,6 +15,10 @@ pipeline {
              '''
         }
       }
+  stages {
+    
+    stage('Build') {
+      
       steps {
             container('maven') {
                 sh 'mvn --version'
