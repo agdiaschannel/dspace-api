@@ -1,9 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('Checkout SCM') {
+    stage('DSpace Directory') {
         steps {
-          echo 'checkout-scm'
+          sh 'mkdir /dspace'
         }
     }
   }
