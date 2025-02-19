@@ -7,7 +7,7 @@ pipeline {
            spec:
              containers:
              - name: maven
-               image: maven:alpine
+               image: maven:3-ibm-semeru-23-jammy
                command:
                - cat
                tty: true
