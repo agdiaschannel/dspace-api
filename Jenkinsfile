@@ -5,7 +5,7 @@ pipeline {
     stage('Build') {
       agent {
         kubernetes {
-          yaml: readFile('manifests/maven.yaml')
+          yaml readFile('manifests/maven.yaml')
         }
       }
       steps {
