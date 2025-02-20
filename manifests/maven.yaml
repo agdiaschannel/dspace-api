@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
   - name: maven    # This *must* match the container name in the pipeline
-    image: maven:latest # Or a specific Maven version
+    image: maven:3.9.9-eclipse-temurin-21-alpine
     command: ["cat"] # A dummy command to keep the container running initially.
     resources:
       requests:
