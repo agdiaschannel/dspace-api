@@ -9,8 +9,11 @@ pipeline {
         }
       }
       steps {
-        container('maven') {
-          sh 'mvn --version'
+        node {
+          container('maven') {
+            sh 'mvn --version'
+          }
+       
         }
       }
     }
