@@ -8,7 +8,7 @@ pipeline {
         }
       }
       steps {
-        node { // Add the node block here
+        node('maven') { // Add the node block here
           container('maven') {
             sh 'mvn --version'
           }
