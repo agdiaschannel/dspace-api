@@ -3,7 +3,7 @@ kind: Pod
 spec:
   containers:
     - name: maven
-      image: maven:3.6.3
+      image: maven:3.8
       imagePullPolicy: IfNotPresent
       command:
         - cat
