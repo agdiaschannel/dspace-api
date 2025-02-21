@@ -4,15 +4,15 @@ pipeline {
     stage('Build') {
       agent {
         kubernetes {
-          yamlFile('manifests/maven.yaml') // This line needs to be inside the node block
+          node('built-in') {
+            yamlFile('manifests/maven.yaml') // This line needs to be inside the node block
+          }
+        
         }
       }
       steps {
-        node('built-in') { // Add the node block here
-          checkout scm
           container('maven') {
             sh 'mvn --version'
-          }
         }
       }
     }
