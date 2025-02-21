@@ -1,21 +1,13 @@
 pipeline {
-  agent {
-    kubernetes {
-      yaml '''
-        apiVersion: v1
-        kind: Pod
-        spec:
-          containers:
-          - name: maven
-            image: maven:alpine
-            command:
-            - cat
-            tty: true
-        '''
-    }
-  }
+  agent none
+  
   stages {
     stage('Run maven') {
+      agent {
+        kubernetes {
+          yamlFile('manifests/maven.yaml')
+        }
+      }
       steps {
         container('maven') {
           sh 'mvn -version'
