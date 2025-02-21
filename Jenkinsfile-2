@@ -18,12 +18,10 @@ pipeline {
       }
     }
     stage('Archive Installer') {
-            steps {
-                stash includes: 'dspace-api/DSpace-dspace-8.1/dspace/target/dspace-installer/**' // Stash the installer directory
-                archiveArtifacts 'dspace-api/DSpace-dspace-8.1/dspace/target/dspace-installer/**' // Archive for download
-            }
-    }
-    
-
+      steps {
+          stash name: 'dspace-installer-files', includes: 'dspace-api/DSpace-dspace-8.1/dspace/target/dspace-installer/**' // Stash the installer directory
+          archiveArtifacts 'dspace-api/DSpace-dspace-8.1/dspace/target/dspace-installer/**' // Archive for download
+      }
+    }   
   }
 }
