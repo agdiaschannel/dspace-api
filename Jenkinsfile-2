@@ -1,8 +1,6 @@
 pipeline {
   agent none
-  
-  stages {
-    
+  stages {    
     stage('Build') {
       agent  {
         kubernetes {
@@ -12,10 +10,7 @@ pipeline {
       steps {
         container('maven') {
           sh 'mvn package --file DSpace-dspace-8.1/dspace/pom.xml'
-          stash name: 'dspace-installer-files', includes: '/home/jenkins/agent/workspace/dspace-api/DSpace-dspace-8.1/dspace/target/dspace-installer/**' // Stash the installer directory
-  
         }
-       
       }
     }
   }
