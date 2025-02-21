@@ -20,7 +20,10 @@ pipeline {
         }
       }
       steps {
-       sh 'mvn --version'
+        container('maven') {
+          sh 'mvn --version'
+        }
+       
       }
     }
   }
