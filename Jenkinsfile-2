@@ -17,5 +17,20 @@ pipeline {
        
       }
     }
+    stage('Archive Installer') {
+            steps {
+                stash includes: 'dspace-api/DSpace-dspace-8.1/dspace/target/dspace-installer/**' // Stash the installer directory
+                archiveArtifacts 'dspace-api/DSpace-dspace-8.1/dspace/target/dspace-installer/**' // Archive for download
+            }
+    }
+    stage('Deploy') { // Example deployment stage
+            agent any  // Or specify an agent where you want to deploy
+            steps {
+                unstash // Retrieve the stashed installer files
+                //sh './install_dspace.sh' // Or whatever your deployment script is
+                // ... other deployment steps ...
+            }
+        }
+
   }
 }
