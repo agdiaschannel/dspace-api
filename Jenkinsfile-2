@@ -1,0 +1,20 @@
+pipeline {
+  agent none
+  
+  stages {
+    
+    stage('Build') {
+      agent  {
+        kubernetes {
+         yamlFile('manifests/maven.yaml')
+        }
+      }
+      steps {
+        container('maven') {
+          sh 'mvn --version'
+        }
+       
+      }
+    }
+  }
+}
