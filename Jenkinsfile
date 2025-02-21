@@ -21,7 +21,7 @@ pipeline {
       }
       steps {
         step('run maven') {
-         
+         sh 'mvn --version'
         }
       }
     }
