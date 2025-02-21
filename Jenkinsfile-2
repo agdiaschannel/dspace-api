@@ -11,7 +11,7 @@ pipeline {
       }
       steps {
         container('maven') {
-          sh 'mvn  --file DSpace-dspace-8.1/dspace/pom.xml'
+          sh 'mvn package --file DSpace-dspace-8.1/dspace/pom.xml'
   
         }
        
