@@ -4,7 +4,7 @@ pipeline {
     stage('Build') {
       agent {
         kubernetes {
-            readFile('manifests/maven.yaml') // This line needs to be inside the node block
+            yamlFile('manifests/maven.yaml') // This line needs to be inside the node block
         }
       }
       steps {
