@@ -1,21 +1,39 @@
 pipeline {
-  agent none
-  stages {    
-    stage('Build') {
-      agent  {
-        kubernetes {
-         yamlFile('manifests/maven.yaml')
-        }
-      }
+  agent {
+    kubernetes {
+      label 'agent',
+      defaultContainer 'jnlp' // Label for identifying the pod
+      podTemplate(
+        label: 'my-pod',
+        containers: [
+          containerTemplate(
+            name: 'maven',
+            image: 'maven:3.8.5-openjdk-17',
+            ttyEnabled: true,
+            command: 'cat'
+          )
+
+        ] // End of containers
+
+
+      ) // End of podTemplate
+    }
+  }
+  stages {
+    stage('Checkout') {
       steps {
-        container('maven') {
-          sh 'mvn package --file DSpace-dspace-8.1/dspace/pom.xml'
+        script {
+          checkout scm
         }
       }
     }
-    stage('Build with Buidah') {
-      container('buildah') {
-        sh 'buildah build -t angelodias/dspace'
+    stage('Build') {
+      steps {
+        script {
+          container('maven') {
+            sh 'mvn package'
+          }
+        }
       }
     }
   }
