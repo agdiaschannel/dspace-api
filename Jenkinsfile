@@ -1,29 +1,16 @@
 pipeline {
   agent none
-  
-  stages {
-    
+  stages {    
     stage('Build') {
       agent  {
         kubernetes {
-          yaml '''
-            apiVersion: v1
-            kind: Pod
-            spec:
-              containers:
-              - name: maven
-                image: maven:alpine
-                command:
-                - cat
-                tty: true
-          '''
+         yamlFile('manifests/maven.yaml')
         }
       }
       steps {
         container('maven') {
-          sh 'mvn --version'
+          sh 'mvn package --file DSpace-dspace-8.1/dspace/pom.xml'
         }
-       
       }
     }
   }
