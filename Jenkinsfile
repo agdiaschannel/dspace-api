@@ -13,5 +13,10 @@ pipeline {
         }
       }
     }
+    stage('Build with Buidah') {
+      container('buildah') {
+        sh 'buildah build -t angelodias/dspace'
+      }
+    }
   }
 }
