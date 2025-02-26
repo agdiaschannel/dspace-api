@@ -24,14 +24,6 @@ pipeline {
         }
       }
     }
-    stage('Build') {
-      steps {
-        script {
-          container('maven') {
-            sh 'mvn --version'
-          }
-        }
-      }
-    }
+   
   )
 }
