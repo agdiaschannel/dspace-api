@@ -1,7 +1,7 @@
 pipeline {
   agent {
     kubernetes {
-      label 'agent',
+      
       defaultContainer 'jnlp' // Label for identifying the pod
       podTemplate(
         label: 'my-pod',
