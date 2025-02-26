@@ -17,14 +17,12 @@ pipeline {
     }
   }
   stages(
-    stage('Checkout scm') {
+    stage('checkout scm') {
       steps {
         script {
-          sh 'checkout scm'
+          checkout scm
         }
       }
     }
-    
-   
   )
 }
