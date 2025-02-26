@@ -1,7 +1,7 @@
 pipeline {
   agent {
     kubernetes {
-      inheritedFrom 'somelabel'
+      
       defaultContainer 'jnlp' //Default container to use for Jenkins agent
       podTemplate(
         label: 'my-pod',
