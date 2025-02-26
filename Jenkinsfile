@@ -1,8 +1,8 @@
 pipeline {
   agent {
     kubernetes {
-      
-      defaultContainer 'jnlp' // Label for identifying the pod
+      inheritedFrom 'somelabel'
+      defaultContainer 'jnlp' //Default container to use for Jenkins agent
       podTemplate(
         label: 'my-pod',
         containers: [
@@ -11,15 +11,13 @@ pipeline {
             image: 'maven:3.8.5-openjdk-17',
             ttyEnabled: true,
             command: 'cat'
-          )
+          ),
+        ] // end of containers
+      )
 
-        ] // End of containers
-
-
-      ) // End of podTemplate
     }
-  }
-  stages {
+  },
+  stages(
     stage('Checkout') {
       steps {
         script {
@@ -31,10 +29,10 @@ pipeline {
       steps {
         script {
           container('maven') {
-            sh 'mvn package'
+            sh 'mvn --version'
           }
         }
       }
     }
-  }
+  )
 }
