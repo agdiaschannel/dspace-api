@@ -14,9 +14,8 @@ pipeline {
           ),
         ] // end of containers
       )
-
     }
-  },
+  }
   stages(
     stage('Checkout') {
       steps {
